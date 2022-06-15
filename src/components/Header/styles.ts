@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  background: var(--blue);
+  background: ${props => props.theme.colors.darkGray};
 `;
 
 export const Content = styled.div`
@@ -25,6 +25,21 @@ export const Content = styled.div`
 
     &:hover {
       filter: brightness(0.9);
+    }
+
+    @media (max-width: 480px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      height: 2rem;
+      width: 2rem;
+      
+
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
     }
   }
 `;

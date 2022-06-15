@@ -31,13 +31,18 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	body {
-			background: var(--background);
+			background: ${props => props.theme.colors.background};
 			-webkit-font-smoothing: antialiased;
 	}
 
 	body, input, textarea, button {
 		font-family: 'Poppins', sans-serif;
 		font-weight: 400;
+	}
+
+	input:focus, textarea:focus, button:focus {
+		outline: none;
+		border: 2px solid white
 	}
 
 	h1, h2, h3, h4, h5, h6, strong {
@@ -70,10 +75,14 @@ export const GlobalStyle = createGlobalStyle`
 	.react-modal-content {
 		width: 100%;
 		max-width: 576px;
-		background: var(--background);
+		background: ${props => props.theme.colors.background};
 		padding: 3rem;
 		position: relative;
 		border-radius: 0.25rem;
+
+		@media (max-width: 480px) {
+			height: 100vh;
+		}
 	}
 
 	.react-modal-close {
