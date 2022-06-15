@@ -1,10 +1,12 @@
 import { FormEvent, useState } from 'react'
 import Modal from 'react-modal'
+import { toast, ToastContainer } from 'react-toastify'
 
 import closeImg from '../../assets/close.svg'
 import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 import { useTransactions } from '../../hooks/useTransactions'
+import { showToast } from '../Toast'
 
 import { Container, TransactionTypeContainer, RadioBox } from './styles'
 
@@ -12,7 +14,6 @@ interface newTransactionModalProps {
   isOpen: boolean;
   onRequestClose: () => void;
 }
-
 export function NewTransactionModal({ isOpen, onRequestClose }: newTransactionModalProps) {
   const { createTransaction } = useTransactions();
   
@@ -24,18 +25,28 @@ export function NewTransactionModal({ isOpen, onRequestClose }: newTransactionMo
   async function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    await createTransaction({
-      title,
-      amount,
-      category,
-      type
-    })
+    if (title.trim() === "" || amount === 0 || category.trim() === "") {
+      showToast({type: 'error', message: 'Insira todas as informações'});
+      return
+    }
 
-    setTitle('')
-    setAmount(0)
-    setCategory('')
-    setType('deposit')
-    onRequestClose();
+    try {
+      await createTransaction({
+        title,
+        amount,
+        category,
+        type
+      })
+  
+      setTitle('')
+      setAmount(0)
+      setCategory('')
+      setType('deposit')
+      onRequestClose();
+      showToast({type: 'success', message: 'Nova transação criada com sucesso!'});
+    } catch (error) {
+      showToast({type: 'error', message: 'Erro na transação'});
+    }
   }
   
   return (

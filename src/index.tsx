@@ -13,21 +13,20 @@ createServer({
       transactions: [
         {
           id: 1,
-          title: 'Freelance de website',
+          title: 'Freelance',
           type: 'deposit',
           category: 'Vendas',
-          amount: 1500000,
+          amount: 10000,
           createdAt: new Date('2022-02-20 09:00:00')
 
         },
         {
           id: 2,
-          title: 'Dízimo',
+          title: 'Conta de Internet',
           type: 'withdraw',
-          category: 'Dízimo',
-          amount: 150000,
+          category: 'Contas',
+          amount: 100,
           createdAt: new Date('2022-02-21 10:00:00')
-
         }
       ],
     })

@@ -10,6 +10,7 @@ import dark from './styles/themes/dark';
 
 import { GlobalStyle } from "./styles/global";
 import usePersistedState from './utils/usePersistedState';
+import { Toast } from './components/Toast';
 
 Modal.setAppElement('#root');
 
@@ -40,6 +41,7 @@ export function App() {
         />
         <GlobalStyle />
       </ThemeProvider>
+      <Toast />
     </TransactionsProvider>
   );
 }
