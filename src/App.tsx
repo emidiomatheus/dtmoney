@@ -9,11 +9,12 @@ import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 
 import { GlobalStyle } from "./styles/global";
+import usePersistedState from './utils/usePersistedState';
 
 Modal.setAppElement('#root');
 
 export function App() {
-  const [theme, setTheme] = useState(dark)
+  const [theme, setTheme] = usePersistedState('theme', dark)
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
 
   function handleOpenNewTransactionModal() {
@@ -24,10 +25,14 @@ export function App() {
     setIsNewTransactionModalOpen(false)
   }
 
+  function toggleTheme() {
+    setTheme(theme.title === 'light' ? dark : light)
+  }
+
   return (
     <TransactionsProvider>
       <ThemeProvider theme={theme}>
-        <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
+        <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} toggleTheme={toggleTheme} />
         <Dashboard />
         <NewTransactionModal
           isOpen={isNewTransactionModalOpen}

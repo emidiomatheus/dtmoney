@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  background: ${props => props.theme.colors.darkGray};
+  background: ${props => props.theme.colors.blue};
 `;
 
 export const Content = styled.div`
@@ -13,10 +13,17 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
   button {
     font-size: 1rem;
     color: #fff;
-    background: var(--blue-light);
+    background: ${props => props.theme.colors.blueLight};
     border: 0;
     padding: 0 2rem;
     border-radius: 0.25rem;
